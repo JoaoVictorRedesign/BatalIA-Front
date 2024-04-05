@@ -10,12 +10,14 @@ import axios from 'axios';
 
 function App() {
   const [prompt, setPrompt] = useState("")
+  const [response, setResponse] = useState("")
   async function OnSubmitPrompt(){
     const body = {
       prompt,
     }
-    const response = axios.get(`http://localhost:3000/request-prompt?prompt=${prompt}`)
-    console.log(await response)
+    const res = await axios.post("http://localhost:3000/request-prompt", body)
+    setResponse(res.data)
+    console.log(res.data)
   }
   return (
       <div className='bg-dots w-[100vw] h-[100vh]  bg-cover pt-6'>
@@ -28,7 +30,7 @@ function App() {
               <Point></Point>
               <Point></Point>
           </div>
-            <DialogArea Output={''} ></DialogArea>
+            <DialogArea Output={response} ></DialogArea>
             <div className='w-64 mt-8'>
               <DropMenu></DropMenu>
             </div>
@@ -48,7 +50,7 @@ function App() {
               <Point></Point>
               <Point></Point>
           </div>
-            <DialogArea></DialogArea>
+            <DialogArea Output={response}></DialogArea>
             <div className='w-64 mt-8'>
               <DropMenu></DropMenu>
             </div>
