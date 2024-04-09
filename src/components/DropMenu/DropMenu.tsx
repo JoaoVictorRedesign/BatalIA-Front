@@ -4,16 +4,22 @@ import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 
-const people = [
+const items = [
   { name: 'LLama' },
-  { name: 'Claude' },
+  { name: 'Claude 3' },
 
 ]
+interface DropMenu{
+  DropMenuItem: Function
+}
 
-export default function DropMenu() {
-  const [selected, setSelected] = useState(people[0])
+export default function DropMenu(props: DropMenu) {
+  const [selected, setSelected] = useState(items[0])
   const [isClicked, setIsClicked] = useState(false)
 
+  function HandleClick(item: { name: string }){
+    props.DropMenuItem(item.name)
+  }
   return (
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative mt-1"
@@ -35,15 +41,16 @@ export default function DropMenu() {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
-              {people.map((person, personIdx) => (
+              {items.map((item, itemIndex) => (
                 <Listbox.Option
-                  key={personIdx}
+                  key={itemIndex}
                   className={({ active }) =>
                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
                     }`
                   }
-                  value={person}
+                  value={item}
+                  onClick={() => HandleClick(item)}
                 >
                   {({ selected }) => (
                     <>
@@ -52,7 +59,7 @@ export default function DropMenu() {
                           selected ? 'font-medium' : 'font-normal'
                         }`}
                       >
-                        {person.name}
+                        {item.name}
                       </span>
                       {selected ? (
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">

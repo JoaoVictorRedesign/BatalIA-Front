@@ -8,7 +8,7 @@ interface Components {
   }
   
 
-function DialogArea(props: Components) {
+function DialogAreaAWS(props: Components) {
     return (
         <div className='w-[38rem] h-96 bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] rounded-3xl  text-white p-[2px]'>
           {props.IsRequest?
@@ -20,11 +20,11 @@ function DialogArea(props: Components) {
           :
           <div className='h-full rounded-3xl bg-slate-950 p-8 overflow-auto no-scrollbar'> 
           <div className='overflow-auto'>
-            {props.Output}
+           <pre>{props.Output}</pre> 
           </div>
           </div>
           }
         </div>
     )
   }
-export default DialogArea
+export default DialogAreaAWS
