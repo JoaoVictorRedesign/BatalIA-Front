@@ -5,9 +5,13 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 
 const items = [
-  { name: 'Selecione...' },
   { name: 'LLama' },
+  { name: 'Claude 3 Sonnet' },
+  { name: 'Mixtral 8x7B Instruct' },
+  { name: 'Titan Embeddings G1 - Text' },
   { name: 'Claude 3' },
+  { name: 'Selecione...' },
+  {name: "Granite 13b chat v2"}
 
 ]
 interface DropMenu{
@@ -41,7 +45,9 @@ export default function DropMenu(props: DropMenu) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+            <Listbox.Options className="absolute bottom-16 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+              // onFocus={()=>setIsClicked(!isClicked)}
+            >
               {items.map((item, itemIndex) => (
                 <Listbox.Option
                   key={itemIndex}

@@ -18,21 +18,24 @@ function App() {
   const [itemSelectedLeft, setItemSelectedLeft] = useState("Escolha um modelo")
   const [itemSelectedRigth, setItemSelectedRigth] = useState("Escolha um modelo")
 
+  const [topic, setTopic] = useState<Number>()
+
   async function OnSubmitPrompt(){
     setIsRequest(true)
     setIsRequestAWS(true)
-    const body = {
+    const data = {
       prompt,
       model: itemSelectedLeft,
+      topic,
     }
     const [resIBM, resAWS] = await Promise.all([
-      axios.post("http://localhost:3000/request-prompt", body),
-      axios.post("http://localhost:3000/request-model2", body)
+      axios.post("http://localhost:3000/request-prompt", data),
+      axios.post("http://localhost:3000/request-model2", data)
   ]);
 
   setIsRequest(false);
   setIsRequestAWS(false);
-
+  
   setResponseIBM(resIBM.data.text);
   setResponseAWS(resAWS.data.text);
 
@@ -44,9 +47,13 @@ function App() {
   function handleClickRight(data: string){
     setItemSelectedRigth(data)
   }
+  function handleChageTopic(data: Number){
+    setTopic(data)
+    console.log("No item pai: " + data)
+  }
 
   return (
-      <div className='bg-dots w-[100vw] overflow-hidden bg-cover pt-6 pb-8'>
+      <div className='w-screen h-screen pt-6 pb-10 overflow-hidden bg-dots bg-cover'>
         <div className='w-full flex justify-center pb-8'>
           {/* <img src={gif} alt="" className='h-40 ' />   */}
         </div>
@@ -65,8 +72,8 @@ function App() {
             </div>
           </div>
 
-          <div className='mb-0 flex-initial   absolute bottom-0 w-[30%]'>
-            <textarea className='bg-gradient-to-r from-[#FF00B8] outline-none text-white text-base  to-[#FF5C00] h-16 resize-none w-full rounded-3xl px-4 pr-14 disabled:text-gray-300 overflow-hidden p-2' 
+          <div className='mb-0 flex absolute rounded-3xl p-[2px] bottom-0 w-[30%] bg-gradient-to-r from-[#FF00B8]  to-[#FF5C00]'>
+            <textarea className=' outline-none text-white text-base bg-slate-900 h-16 resize-none w-full rounded-3xl px-4 pr-14 disabled:text-gray-300 overflow-hidden p-2 flex justify-center  ' 
             onChange={e=> setPrompt(e.target.value)}
             disabled={isRequest}
             value={prompt}
@@ -96,7 +103,7 @@ function App() {
           {/* <Theme theme='Formula 1'></Theme>
           <Theme theme='Futebol'></Theme>
           <Theme theme='Em aberto...'></Theme> */}
-          <RadioButton></RadioButton>
+          <RadioButton itemSelected={handleChageTopic}></RadioButton>
         </div>          
       </div>
   )

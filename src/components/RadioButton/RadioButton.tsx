@@ -1,4 +1,4 @@
-import { SVGProps, useState } from 'react'
+import { SVGProps, useEffect, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { JSX } from 'react/jsx-runtime'
 import { FaCheckCircle } from "react-icons/fa";
@@ -6,17 +6,30 @@ import { FaCheckCircle } from "react-icons/fa";
 const plans = [
   {
     name: 'Fórmula 1',
+    index: 1
   },
   {
     name: 'Futebol',
+    index: 2
   },
   {
     name: 'Em aberto...',
+    index: 3
   },
 ]
+interface RadioButton{
+  itemSelected: (data: number)=> void
+}
 
-export default function RadioButton() {
+export default function RadioButton(props: RadioButton) {
   const [selected, setSelected] = useState(plans[0])
+
+  useEffect(()=>{
+    props.itemSelected(selected.index)
+
+  },[selected])
+
+  
 
   return(
     <RadioGroup value={selected} onChange={setSelected} defaultValue={plans[0]} className={'flex gap-4 w-full justify-between  '}>
@@ -37,7 +50,9 @@ export default function RadioButton() {
       >
         {({ active, checked }) => (
           <>
-            <div className="flex w-full items-center justify-between relative h-full">
+            <div className="flex w-full items-center justify-between relative h-full"
+              // onClick={handleClick}
+            >
               <div className="flex items-center w-full justify-center h-full bg-slate-900 rounded-3xl">
                 <div className="text-2xl font-bold text-center ">
                   <RadioGroup.Label
