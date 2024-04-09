@@ -5,6 +5,7 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 
 const items = [
+  { name: 'Selecione...' },
   { name: 'LLama' },
   { name: 'Claude 3' },
 
@@ -22,7 +23,7 @@ export default function DropMenu(props: DropMenu) {
   }
   return (
       <Listbox value={selected} onChange={setSelected}>
-        <div className="relative mt-1"
+        <div className="relative mt-1 z-50"
         onClick={()=>{setIsClicked(!isClicked)}}
         >
           <Listbox.Button className="relative h-14 w-full cursor-default text-white font-bold text-center text-2xl rounded-3xl bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] py-2 pl-3 pr-10 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">

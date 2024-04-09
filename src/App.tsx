@@ -15,8 +15,8 @@ function App() {
   const [responseIBM, setResponseIBM] = useState<string>("")
   const [responseAWS, setResponseAWS] = useState<string>("")
   
-  const [itemSelectedLeft, setItemSelectedLeft] = useState("LLama")
-  const [itemSelectedRigth, setItemSelectedRigth] = useState("LLama")
+  const [itemSelectedLeft, setItemSelectedLeft] = useState("Escolha um modelo")
+  const [itemSelectedRigth, setItemSelectedRigth] = useState("Escolha um modelo")
 
   async function OnSubmitPrompt(){
     setIsRequest(true)

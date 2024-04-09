@@ -1,6 +1,7 @@
 import { SVGProps, useState } from 'react'
 import { RadioGroup } from '@headlessui/react'
 import { JSX } from 'react/jsx-runtime'
+import { FaCheckCircle } from "react-icons/fa";
 
 const plans = [
   {
@@ -18,7 +19,7 @@ export default function RadioButton() {
   const [selected, setSelected] = useState(plans[0])
 
   return(
-    <RadioGroup value={selected} onChange={setSelected} className={'flex gap-4'}>
+    <RadioGroup value={selected} onChange={setSelected} defaultValue={plans[0]} className={'flex gap-4 w-full justify-between  '}>
        {plans.map((plan)=>(
         <RadioGroup.Option
         key={plan.name}
@@ -27,38 +28,32 @@ export default function RadioButton() {
           ` 
           ${
             active
-              ? 'ring-2 ring-white/60 ring-offset-2 ring-offset-sky-300'
+              ? ''
               : ''
           }
-          ${checked ? 'bg-sky-900/75 text-white' : 'bg-white'}
-            relative flex  cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
+          ${checked ? ' transition-color bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] text-white scale-[1.08] hover:scale-[1.08]' : 'bg-white'}
+           hover:scale-[1.02] transition-all flex cursor-pointer  w-96 h-14 rounded-3xl  p-[2px] items-center text-white `
         }
       >
         {({ active, checked }) => (
           <>
-            <div className="flex w-full items-center justify-between">
-              <div className="flex items-center">
-                <div className="text-sm">
+            <div className="flex w-full items-center justify-between relative h-full">
+              <div className="flex items-center w-full justify-center h-full bg-slate-900 rounded-3xl">
+                <div className="text-2xl font-bold text-center ">
                   <RadioGroup.Label
                     as="p"
-                    className={`font-medium  ${
-                      checked ? 'text-white' : 'text-gray-900'
+                    className={`font-medium flex  ${
+                      checked ? 'text-white' : 'text-white'
                     }`}
                   >
                     {plan.name}
                   </RadioGroup.Label>
-                  <RadioGroup.Description
-                    as="span"
-                    className={`inline ${
-                      checked ? 'text-sky-100' : 'text-gray-500'
-                    }`}
-                  >
-                  </RadioGroup.Description>
                 </div>
               </div>
               {checked && (
-                <div className="shrink-0 text-white">
-                  <CheckIcon className="h-6 w-6" />
+                <div className="shrink-0 text-white absolute right-2">
+                  <FaCheckCircle 
+                  className='text-[#FF00B8] text-2xl'/>
                 </div>
               )}
             </div>
