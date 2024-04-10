@@ -3,7 +3,7 @@ import { RadioGroup } from '@headlessui/react'
 import { JSX } from 'react/jsx-runtime'
 import { FaCheckCircle } from "react-icons/fa";
 
-const plans = [
+const topic = [
   {
     name: 'Fórmula 1',
     index: 1
@@ -22,7 +22,7 @@ interface RadioButton{
 }
 
 export default function RadioButton(props: RadioButton) {
-  const [selected, setSelected] = useState(plans[0])
+  const [selected, setSelected] = useState(topic[0])
 
   useEffect(()=>{
     props.itemSelected(selected.index)
@@ -32,8 +32,8 @@ export default function RadioButton(props: RadioButton) {
   
 
   return(
-    <RadioGroup value={selected} onChange={setSelected} defaultValue={plans[0]} className={'flex gap-4 w-full justify-between  '}>
-       {plans.map((plan)=>(
+    <RadioGroup value={selected} onChange={setSelected} defaultValue={topic[0]} className={'flex gap-4 w-full justify-between  '}>
+       {topic.map((plan)=>(
         <RadioGroup.Option
         key={plan.name}
         value={plan}
@@ -44,7 +44,7 @@ export default function RadioButton(props: RadioButton) {
               ? ''
               : ''
           }
-          ${checked ? ' transition-color bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] text-white scale-[1.08] hover:scale-[1.08]' : 'bg-white'}
+          ${checked ? ' transition-color bg-gradient-to-l from-[#FF00B8] to-[#FF5C00] text-white scale-[1.08] hover:scale-[1.08]' : 'bg-white'}
            hover:scale-[1.02] transition-all flex cursor-pointer  w-96 h-14 rounded-3xl  p-[2px] items-center text-white `
         }
       >
@@ -57,7 +57,7 @@ export default function RadioButton(props: RadioButton) {
                 <div className="text-2xl font-bold text-center ">
                   <RadioGroup.Label
                     as="p"
-                    className={`font-medium flex  ${
+                    className={`font-semibold flex font-averta  ${
                       checked ? 'text-white' : 'text-white'
                     }`}
                   >

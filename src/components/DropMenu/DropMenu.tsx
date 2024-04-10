@@ -5,13 +5,13 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 
 const items = [
-  { name: 'LLama' },
-  { name: 'Claude 3 Sonnet' },
-  { name: 'Mixtral 8x7B Instruct' },
-  { name: 'Titan Embeddings G1 - Text' },
-  { name: 'Claude 3' },
   { name: 'Selecione...' },
-  {name: "Granite 13b chat v2"}
+  { name: 'LLama', platform: "ibm" },
+  { name: 'Claude 3 Sonnet', platform: "aws" },
+  { name: 'Mixtral 8x7B Instruct', platform: "aws" },
+  { name: 'Titan Embeddings G1 - Text', platform: "aws" },
+  { name: "Granite 13b chat v2", platform: "ibm"},
+  { name: "Flan ul2 20b", platform: "ibm"},
 
 ]
 interface DropMenu{
@@ -22,16 +22,23 @@ export default function DropMenu(props: DropMenu) {
   const [selected, setSelected] = useState(items[0])
   const [isClicked, setIsClicked] = useState(false)
 
-  function HandleClick(item: { name: string }){
-    props.DropMenuItem(item.name)
+  type Item = {
+    name: string;
+    platform?: string; // Make platform optional
+  };
+  function HandleClick(item: Item){
+    props.DropMenuItem({
+      "name": item.name,
+      "platform": item.platform
+    })
   }
   return (
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox value={selected} onChange={setSelected} defaultValue={items[0]}>
         <div className="relative mt-1 z-50"
         onClick={()=>{setIsClicked(!isClicked)}}
         >
           <Listbox.Button className="relative h-14 w-full cursor-default text-white font-bold text-center text-2xl rounded-3xl bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] py-2 pl-3 pr-10 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">
-            <span className="block truncate">{selected.name}</span>
+            <span className="block truncate font-averta font-semibold">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-2xl">
               <MdOutlineKeyboardArrowDown
                 className={`h-5 w-5 text-white text-2xl transition-all ${isClicked? 'rotate-180 ': ''}`}

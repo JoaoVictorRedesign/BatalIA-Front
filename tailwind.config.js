@@ -37,6 +37,9 @@ export default {
           '4': '4px',
         },
       },
+      fontFamily: {
+        averta: ['font-averta', 'sans'],
+      },
     },
   },
   plugins: [

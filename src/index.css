@@ -14,3 +14,15 @@
         scrollbar-width: none;  /* Firefox */
   }
 }
+@font-face {
+    font-family: 'font-averta';
+    src: url('./assets/fonts/Averta Black.otf') format('opentype'),
+         url('./assets/fonts/Averta Bold.otf') format('opentype'),
+         url('./assets/fonts/Averta Extra Bold.otf') format('opentype'),
+         url('./assets/fonts/Averta Light.otf') format('opentype'),
+         url('./assets/fonts/Averta Semibold.otf') format('opentype'),
+         url('./assets/fonts/Averta Thin.otf') format('opentype');
+  }
+h1{
+    @apply font-averta font-bold text-3xl
+}

@@ -4,8 +4,8 @@ import DropMenu from "./components/DropMenu/DropMenu"
 import Point from "./components/Points/Point"
 import { MdSend } from "react-icons/md";
 import axios from 'axios';
-import Theme from './components/QuestionTheme/Theme';
 import RadioButton from './components/RadioButton/RadioButton';
+import gif from "./assets/batalia.gif"
 
 function App() {
   const [prompt, setPrompt] = useState("")
@@ -17,20 +17,29 @@ function App() {
   
   const [itemSelectedLeft, setItemSelectedLeft] = useState("Escolha um modelo")
   const [itemSelectedRigth, setItemSelectedRigth] = useState("Escolha um modelo")
+  const [platformLeft, setPlatformLeft] = useState("")
+  const [platformRigth, setPlatformRigth] = useState("")
 
   const [topic, setTopic] = useState<Number>()
 
   async function OnSubmitPrompt(){
     setIsRequest(true)
     setIsRequestAWS(true)
-    const data = {
+    const dataLeft = {
       prompt,
       model: itemSelectedLeft,
       topic,
+      platform: platformLeft
+    }
+    const dataRigth = {
+      prompt,
+      model: itemSelectedRigth,
+      topic,
+      platform: platformRigth
     }
     const [resIBM, resAWS] = await Promise.all([
-      axios.post("http://localhost:3000/request-prompt", data),
-      axios.post("http://localhost:3000/request-model2", data)
+      axios.post("http://localhost:3000/request-prompt", dataLeft),
+      axios.post("http://localhost:3000/request-model2", dataRigth)
   ]);
 
   setIsRequest(false);
@@ -41,21 +50,29 @@ function App() {
 
     setPrompt("")
   }
-  function handleClickLeft(data: string){
-    setItemSelectedLeft(data)
+  type HandleClick = {
+    name: string,
+    platform: string
   }
-  function handleClickRight(data: string){
-    setItemSelectedRigth(data)
+  function handleClickLeft(data: HandleClick){
+    setItemSelectedLeft(data.name)
+    setPlatformLeft(data.platform)
+    console.log("platform: left ", platformLeft)
+  }
+  function handleClickRight(data: HandleClick){
+    setItemSelectedRigth(data.name)
+    setPlatformRigth(data.platform)
+    console.log("platform rigth: " + platformRigth)
+
   }
   function handleChageTopic(data: Number){
     setTopic(data)
-    console.log("No item pai: " + data)
   }
 
   return (
-      <div className='w-screen h-screen pt-6 pb-10 overflow-hidden bg-dots bg-cover'>
+      <div className='w-screen h-screen pb-10 overflow-hidden bg-dots bg-cover'>
         <div className='w-full flex justify-center pb-8'>
-          {/* <img src={gif} alt="" className='h-40 ' />   */}
+          {/* <img src={gif} alt="" className='' />   */}
         </div>
         <div className='flex gap-14 w-full  items-center justify-center  relative '>
           <div className='flex flex-col '>
@@ -64,15 +81,15 @@ function App() {
               <Point></Point>
               <Point></Point>
             </div>
-              <h1 className='text-white font-bold text-3xl'>{itemSelectedLeft}</h1>
+              <h1 className='text-white'>{itemSelectedLeft}</h1>
           </div>
-            <DialogArea Output={responseIBM} IsRequest={isRequest} ></DialogArea>
+            <DialogArea Output={responseIBM} IsRequest={isRequest} position='left' ></DialogArea>
             <div className='w-64 mt-8'>
               <DropMenu DropMenuItem={handleClickLeft}></DropMenu>
             </div>
           </div>
 
-          <div className='mb-0 flex absolute rounded-3xl p-[2px] bottom-0 w-[30%] bg-gradient-to-r from-[#FF00B8]  to-[#FF5C00]'>
+          <div className='mb-0 flex absolute rounded-3xl p-[2px] bottom-0 w-[30%] bg-gradient-to-l from-[#FF00B8]  to-[#FF5C00]'>
             <textarea className=' outline-none text-white text-base bg-slate-900 h-16 resize-none w-full rounded-3xl px-4 pr-14 disabled:text-gray-300 overflow-hidden p-2 flex justify-center  ' 
             onChange={e=> setPrompt(e.target.value)}
             disabled={isRequest}
@@ -82,20 +99,20 @@ function App() {
             className='disabled:cursor-default cursor-pointer  disabled:text-white'
             disabled={isRequest}
             onClick={OnSubmitPrompt}
-            ><MdSend className='text-white absolute right-4 top-4 text-3xl hover:text-gray-200 hover:scale-105 transition-all disabled:hover:scale-0 '/></button>
+            ><MdSend className='text-white absolute right-4 top-5 text-3xl hover:text-gray-200 hover:scale-105 transition-all disabled:hover:scale-0 '/></button>
           </div>
           
           <div className='flex flex-col items-end'>
           <div className='flex mb-6 justify-between w-full'>
-              <h1 className='text-white font-bold text-3xl'>{itemSelectedRigth}</h1>
+              <h1 className='text-white'>{itemSelectedRigth}</h1>
               <div className='flex '>
                 <Point></Point>
                 <Point></Point>
               </div>
           </div>
-            <DialogArea Output={responseAWS} IsRequest={isRequestAWS}></DialogArea>
+            <DialogArea Output={responseAWS} IsRequest={isRequestAWS} position='right'></DialogArea>
             <div className='w-64 mt-8'>
-              <DropMenu DropMenuItem={setItemSelectedRigth}></DropMenu>
+              <DropMenu DropMenuItem={handleClickRight}></DropMenu>
             </div>
           </div>
         </div>
