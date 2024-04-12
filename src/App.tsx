@@ -6,6 +6,7 @@ import { MdSend } from "react-icons/md";
 import axios from 'axios';
 import RadioButton from './components/RadioButton/RadioButton';
 import gif from "./assets/batalia.gif"
+import vs from "./assets/vs.png"
 
 function App() {
   const [prompt, setPrompt] = useState("")
@@ -48,7 +49,8 @@ function App() {
   setResponseIBM(resIBM.data.text);
   setResponseAWS(resAWS.data.text);
 
-    setPrompt("")
+  console.log(responseAWS)
+    // setPrompt("")
   }
   type HandleClick = {
     name: string,
@@ -72,7 +74,7 @@ function App() {
   return (
       <div className='w-screen h-screen pb-10 overflow-hidden bg-dots bg-cover'>
         <div className='w-full flex justify-center pb-8'>
-          {/* <img src={gif} alt="" className='' />   */}
+          <img src={gif} alt="" className='' />  
         </div>
         <div className='flex gap-14 w-full  items-center justify-center  relative '>
           <div className='flex flex-col '>
@@ -89,8 +91,8 @@ function App() {
             </div>
           </div>
 
-          <div className='mb-0 flex absolute rounded-3xl p-[2px] bottom-0 w-[30%] bg-gradient-to-l from-[#FF00B8]  to-[#FF5C00]'>
-            <textarea className=' outline-none text-white text-base bg-slate-900 h-16 resize-none w-full rounded-3xl px-4 pr-14 disabled:text-gray-300 overflow-hidden p-2 flex justify-center  ' 
+          <div className='mb-0 flex absolute rounded-3xl p-[2px] bottom-0 w-[50%] bg-gradient-to-l from-[#FF00B8]  to-[#FF5C00]'>
+            <textarea className=' outline-none text-white text-base bg-slate-900 h-16 resize-none w-full rounded-3xl px-4 pr-14 disabled:text-gray-300 overflow-hidden p-2 flex justify-center font-averta_medium' 
             onChange={e=> setPrompt(e.target.value)}
             disabled={isRequest}
             value={prompt}
@@ -101,7 +103,9 @@ function App() {
             onClick={OnSubmitPrompt}
             ><MdSend className='text-white absolute right-4 top-5 text-3xl hover:text-gray-200 hover:scale-105 transition-all disabled:hover:scale-0 '/></button>
           </div>
-          
+          <div className=''>
+            <img src={vs} alt="" />
+          </div>
           <div className='flex flex-col items-end'>
           <div className='flex mb-6 justify-between w-full'>
               <h1 className='text-white'>{itemSelectedRigth}</h1>
@@ -116,10 +120,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className='text-white flex justify-between gap-8  mt-6  container mx-auto md:px-0 2xl:px-32'>
-          {/* <Theme theme='Formula 1'></Theme>
-          <Theme theme='Futebol'></Theme>
-          <Theme theme='Em aberto...'></Theme> */}
+        <div className='text-white flex mt-6 container mx-auto md:px-0 2xl:px-12'>
           <RadioButton itemSelected={handleChageTopic}></RadioButton>
         </div>          
       </div>

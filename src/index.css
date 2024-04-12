@@ -15,14 +15,28 @@
   }
 }
 @font-face {
-    font-family: 'font-averta';
-    src: url('./assets/fonts/Averta Black.otf') format('opentype'),
-         url('./assets/fonts/Averta Bold.otf') format('opentype'),
-         url('./assets/fonts/Averta Extra Bold.otf') format('opentype'),
-         url('./assets/fonts/Averta Light.otf') format('opentype'),
-         url('./assets/fonts/Averta Semibold.otf') format('opentype'),
-         url('./assets/fonts/Averta Thin.otf') format('opentype');
+    font-family: 'averta-black';
+    src: url('./assets/fonts/Averta Black.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'averta-bold';
+    src: url('./assets/fonts/Averta Bold.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'averta-medium';
+    src: url('./assets/fonts/Averta Light.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'averta-semibold';
+    src: url('./assets/fonts/Averta Semibold.otf') format('opentype');
+  }
+  @font-face {
+    font-family: 'averta-thin';
+    src: url('./assets/fonts/Averta Thin.otf') format('opentype');
   }
 h1{
-    @apply font-averta font-bold text-3xl
+    @apply font-averta_black font-bold text-3xl
+}
+p{
+    @apply font-averta_semibold
 }

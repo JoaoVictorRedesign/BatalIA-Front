@@ -13,7 +13,7 @@ const topic = [
     index: 2
   },
   {
-    name: 'Em aberto...',
+    name: 'Alimentação Saudável',
     index: 3
   },
 ]
@@ -57,7 +57,7 @@ export default function RadioButton(props: RadioButton) {
                 <div className="text-2xl font-bold text-center ">
                   <RadioGroup.Label
                     as="p"
-                    className={`font-semibold flex font-averta  ${
+                    className={`flex   ${
                       checked ? 'text-white' : 'text-white'
                     }`}
                   >

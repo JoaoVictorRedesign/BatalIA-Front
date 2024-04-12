@@ -20,7 +20,7 @@ function DialogArea(props: Components) {
           </div>  
           :
           <div className='h-full rounded-3xl bg-slate-950 p-8 overflow-auto no-scrollbar'> 
-          <div className='overflow-auto whitespace-pre-line'>
+          <div className='overflow-auto whitespace-pre-line font-averta_medium'>
             {props.Output}
           </div>
           </div>

@@ -38,7 +38,7 @@ export default function DropMenu(props: DropMenu) {
         onClick={()=>{setIsClicked(!isClicked)}}
         >
           <Listbox.Button className="relative h-14 w-full cursor-default text-white font-bold text-center text-2xl rounded-3xl bg-gradient-to-r from-[#FF00B8] to-[#FF5C00] py-2 pl-3 pr-10 shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 ">
-            <span className="block truncate font-averta font-semibold">{selected.name}</span>
+            <span className="block truncate font-averta_semibold">{selected.name}</span>
             <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-2xl">
               <MdOutlineKeyboardArrowDown
                 className={`h-5 w-5 text-white text-2xl transition-all ${isClicked? 'rotate-180 ': ''}`}
@@ -70,7 +70,7 @@ export default function DropMenu(props: DropMenu) {
                     <>
                       <span
                         className={`block truncate ${
-                          selected ? 'font-medium' : 'font-normal'
+                          selected ? ' font-averta_semibold' : 'font-averta_medium'
                         }`}
                       >
                         {item.name}

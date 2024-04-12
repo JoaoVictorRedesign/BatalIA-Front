@@ -38,7 +38,11 @@ export default {
         },
       },
       fontFamily: {
-        averta: ['font-averta', 'sans'],
+        averta_black   : ['averta-black', 'sans'],
+        averta_bold    : ['averta-bold', 'sans'],
+        averta_semibold: ['averta-semibold', 'sans'],
+        averta_medium  : ['averta-medium', 'sans'],
+        averta_thin    : ['averta-thin', 'sans'],
       },
     },
   },
