@@ -3,7 +3,6 @@ import DialogArea from "./components/Dialog Area/DialogArea"
 import DropMenu from "./components/DropMenu/DropMenu" 
 import Point from "./components/Points/Point"
 import { MdSend } from "react-icons/md";
-import axios from 'axios';
 import RadioButton from './components/RadioButton/RadioButton';
 import gif from "./assets/batalia.gif"
 import vs from "./assets/vs.png"
