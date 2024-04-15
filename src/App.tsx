@@ -7,6 +7,7 @@ import axios from 'axios';
 import RadioButton from './components/RadioButton/RadioButton';
 import gif from "./assets/batalia.gif"
 import vs from "./assets/vs.png"
+import Api from './api/Axios';
 
 function App() {
   const [prompt, setPrompt] = useState("")
@@ -38,11 +39,15 @@ function App() {
       topic,
       platform: platformRigth
     }
-    const [resIBM, resAWS] = await Promise.all([
+/*     const [resIBM, resAWS] = await Promise.all([
       axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-prompt", dataLeft),
       axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-model2", dataRigth)
   ]);
-
+ */
+  // const resIBM = await axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-prompt", dataLeft)
+  // const resAWS = await axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-model2", dataRigth)
+  const resIBM = await Api.post('/request-prompt', dataLeft)
+  const resAWS = await Api.post('/request-model2', dataRigth)
   setIsRequest(false);
   setIsRequestAWS(false);
   
