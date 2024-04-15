@@ -39,8 +39,8 @@ function App() {
       platform: platformRigth
     }
     const [resIBM, resAWS] = await Promise.all([
-      axios.post("http://localhost:3000/request-prompt", dataLeft),
-      axios.post("http://localhost:3000/request-model2", dataRigth)
+      axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-prompt", dataLeft),
+      axios.post("https://batalia3.1ft4vjov9vox.us-south.codeengine.appdomain.cloud/request-model2", dataRigth)
   ]);
 
   setIsRequest(false);
@@ -120,7 +120,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className='text-white flex mt-6 container mx-auto md:px-0 2xl:px-12'>
+        <div className='text-white flex mt-6 container mx-auto md:px-0 2xl:px-12  '>
           <RadioButton itemSelected={handleChageTopic}></RadioButton>
         </div>          
       </div>
